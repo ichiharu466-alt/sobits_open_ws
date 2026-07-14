@@ -1,7 +1,8 @@
 yoloe_visual_prompt_node:
   ros__parameters:
-    image_topic: /head_rgbd_sensor/rgb/image_raw
+    image_topic: /head_rgbd_sensor/rgb/image_rect_color
     output_topic: /yoloe/object_boxes
+    detected_image_topic: /yolo_node/detected_image
     model_path: yoloe-11s-seg.pt
     # package内のvisual_prompts/sponge.jpgなら、この相対パスで指定可能
     prompt_image_path: visual_prompts/sponge.jpg
@@ -9,8 +10,21 @@ yoloe_visual_prompt_node:
     prompt_bbox: [0.0, 0.0, 0.0, 0.0]
     prompt_bbox_file: ""
     target_class_name: object
+    # 複数対象を同時検出する設定。各リストは同じ順番・要素数にする。
+    # 空文字列なら各画像と同名の.bbox.yamlを使う。
+    prompt_image_paths:
+      - visual_prompts/air_freshener.jpg
+      - visual_prompts/chips.jpg
+      - visual_prompts/sponge.jpg
+      - visual_prompts/tea.jpg
+    prompt_bbox_files: ["", "", "", ""]
+    target_class_names:
+      - air_freshener
+      - chips
+      - sponge
+      - tea
     text_prompt_classes: [person]
-    conf: 0.25
+    conf: 0.70
     iou: 0.7
     imgsz: 640
     device: ""

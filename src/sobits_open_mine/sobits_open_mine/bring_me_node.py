@@ -19,8 +19,14 @@ class BringMeNode(Node):
         # ROS communication settings. These can be overridden by --ros-args -p.
         self.declare_parameter("scan_topic", "/scan")
         self.declare_parameter("cmd_vel_topic", "/omni_base_controller/cmd_vel")
-        self.declare_parameter("detection_topic", "/yolo_node/object_boxes")
-        self.declare_parameter("human_detection_topic", "/yolo_node/object_boxes")
+        self.declare_parameter(
+            "detection_topic",
+            "/object_yolo_node/object_boxes",
+        )
+        self.declare_parameter(
+            "human_detection_topic",
+            "/human_yolo_node/object_boxes",
+        )
         self.declare_parameter("depth_topic", "/head_rgbd_sensor/depth_registered/image_raw")
         self.declare_parameter("camera_info_topic", "/head_rgbd_sensor/rgb/camera_info")
         self.declare_parameter("base_frame", "base_footprint")

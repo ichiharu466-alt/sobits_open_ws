@@ -314,19 +314,29 @@ def launch_setup(
         f"robot.yamlの{robot_name}",
     )
 
-    # Visual Promptノードがpersonも同時検出するため、同時有効時は通常YOLOを
-    # 二重起動しない。
-    if not visual_prompt_enabled:
-        yolo_launch = create_include_launch(
-            "yolo",
-            launches.get("yolo", {}),
-            additional_arguments={
-                "image_topic_name": image_topic_name,
-            },
-        )
+    # 人検出用YOLO (yoloe-26s-seg.pt)
+    yolo_human_launch = create_include_launch(
+        "yolo_human",
+        launches.get("yolo_human", {}),
+        additional_arguments={
+            "image_topic_name": image_topic_name,
+        },
+    )
 
-        if yolo_launch is not None:
-            actions.append(yolo_launch)
+    if yolo_human_launch is not None:
+        actions.append(yolo_human_launch)
+
+    # 物体検出用YOLO (best.pt)
+    yolo_object_launch = create_include_launch(
+        "yolo_object",
+        launches.get("yolo_object", {}),
+        additional_arguments={
+            "image_topic_name": image_topic_name,
+        },
+    )
+
+    if yolo_object_launch is not None:
+        actions.append(yolo_object_launch)
 
     # YOLOE Visual Prompt (reference image + bbox)
     if visual_prompt_enabled:
@@ -442,24 +452,16 @@ def launch_setup(
             f"robot.yamlの{robot_name}",
         ),
 
-        "detection_topic": (
-            visual_prompt_output_topic
-            if visual_prompt_enabled
-            else require_value(
-                robot_config,
-                "detection_topic",
-                f"robot.yamlの{robot_name}",
-            )
+        "detection_topic": require_value(
+            robot_config,
+            "detection_topic",
+            f"robot.yamlの{robot_name}",
         ),
 
-        "human_detection_topic": (
-            visual_prompt_output_topic
-            if visual_prompt_enabled
-            else require_value(
-                robot_config,
-                "human_detection_topic",
-                f"robot.yamlの{robot_name}",
-            )
+        "human_detection_topic": require_value(
+            robot_config,
+            "human_detection_topic",
+            f"robot.yamlの{robot_name}",
         ),
 
         "depth_topic": require_value(

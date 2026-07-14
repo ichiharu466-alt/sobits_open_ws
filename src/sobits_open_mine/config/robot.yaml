@@ -1,8 +1,8 @@
 robots:
   hsrb:
     cmd_vel_topic: /omni_base_controller/cmd_vel
-    detection_topic: /yolo_node/object_boxes
-    human_detection_topic: /yolo_node/object_boxes
+    detection_topic: /object_yolo_node/object_boxes
+    human_detection_topic: /human_yolo_node/object_boxes
 
     depth_topic: /head_rgbd_sensor/depth_registered/image_raw
     camera_info_topic: /head_rgbd_sensor/rgb/camera_info

@@ -21,13 +21,29 @@ launches:
     file: nav2.launch.py
     arguments: {}
 
-  yolo:
+  yolo_human:
     enabled: true
     package: yolo_ros
     file: yolo.launch.py
     arguments:
-      weights_path: /home/su-laptop-19/sobits_open_ws/install/yolo_ros/share/yolo_ros/weights
+      node_name: human_yolo_node
+      weights_path: /home/su-laptop-19/sobits_open_ws/src/yolo_ros/weights
       weight_file: yoloe-26s-seg.pt
+      use_bbox_to_3d: "false"
+      use_keypoint_to_3d: "false"
+      use_mask_to_3d: "false"
+      conf: "0.25"
+      device: cpu
+      fuse: "false"
+
+  yolo_object:
+    enabled: true
+    package: yolo_ros
+    file: yolo.launch.py
+    arguments:
+      node_name: object_yolo_node
+      weights_path: /home/su-laptop-19/sobits_open_ws/src/yolo_ros/weights
+      weight_file: best.pt
       use_bbox_to_3d: "false"
       use_keypoint_to_3d: "false"
       use_mask_to_3d: "false"
@@ -48,8 +64,7 @@ bring_me_node:
   location_file: locations.yaml
   task_params_file: task_params.yaml
 
-# 参照画像とbboxをconfig/yoloe_visual_prompt.yamlに設定してからtrueにする。
-# 有効時、bring_me_nodeの物体検出入力はこのノードのoutput_topicへ切り替わる。
+# 現在は通常YOLOを人検出用・物体検出用に分けるため使用しない。
 yoloe_visual_prompt_node:
   enabled: false
   params_file: yoloe_visual_prompt.yaml
