@@ -1,0 +1,16 @@
+yoloe_visual_prompt_node:
+  ros__parameters:
+    image_topic: /head_rgbd_sensor/rgb/image_raw
+    output_topic: /yoloe/object_boxes
+    model_path: yoloe-11s-seg.pt
+    # package内のvisual_prompts/sponge.jpgなら、この相対パスで指定可能
+    prompt_image_path: visual_prompts/sponge.jpg
+    # 0のままなら画像と同名の.bbox.yamlを自動読込する
+    prompt_bbox: [0.0, 0.0, 0.0, 0.0]
+    prompt_bbox_file: ""
+    target_class_name: object
+    text_prompt_classes: [person]
+    conf: 0.25
+    iou: 0.7
+    imgsz: 640
+    device: ""

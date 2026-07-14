@@ -1,0 +1,166 @@
+door:
+  front_angle_width_deg: 15.0
+  closed_distance_threshold: 0.8
+  wait_timeout_sec: 10.0
+  request_interval_sec: 3.0
+navigation:
+  map_frame: map
+  interaction_location: interaction_point
+  retry_count: 2
+  room_to_location:
+    kitchen: kitchen_pose
+    living_room: living_room_pose
+human_detection:
+  target_class: person
+  detection_timeout_sec: 15.0
+  center_tolerance_px: 60.0
+  turn_speed: 0.25
+  image_width: 640.0
+  min_score: 0.3
+speech:
+  listen_timeout_sec: 7
+  silent_mode: false
+  feedback_rate: 0.5
+  retry_when_empty: true
+  retry_when_parse_failed: true
+command:
+  rooms:
+    kitchen:
+      location: kitchen_pose
+      words:
+      - kitchen
+      - キッチン
+      - 台所
+    living_room:
+      location: living_room_pose
+      words:
+      - living room
+      - living
+      - リビング
+      - 居間
+      - living_room
+  objects:
+    sponge:
+      words:
+      - sponge
+      - スポンジ
+      - gekiochikun
+      - 激落ちくん
+      yolo_labels:
+      - sponge
+      - gekiochikun
+      - melamine sponge package
+      - japanese cleaning sponge package
+    tea:
+      words:
+      - tea
+      - green tea
+      - お茶
+      - ちゃ
+      - ティー
+      yolo_labels:
+      - tea bottle
+      - green tea bottle
+    chips:
+      words:
+      - chips
+      - potato chips
+      - チップス
+      - ポテトチップス
+      yolo_labels:
+      - potato chips bag
+      - chips package
+    air_freshener:
+      words:
+      - air freshener
+      - deodorizer
+      - deodorizer spray
+      - 消臭剤
+      yolo_labels:
+      - air freshener
+      - deodorizer spray
+object_detection:
+  detection_timeout_sec: 15.0
+  min_score: 0.2
+  retry_when_not_found: true
+pose_estimation:
+  depth_window_px: 7
+  min_depth_m: 0.15
+  max_depth_m: 2.5
+grasp:
+  grasp_joint_names:
+    - arm_lift_joint
+    - arm_flex_joint
+    - arm_roll_joint
+    - wrist_flex_joint
+    - wrist_roll_joint
+
+  grasp_joint_rad:
+    - 0.30
+    - -0.60
+    - 0.0
+    - -1.00
+    - 0.0
+
+  grasp_pose_duration_sec: 5.0
+
+  lift_after_grasp: true
+  lift_joint: arm_lift_joint
+  lift_joint_rad: 0.35
+  lift_duration_sec: 2.0
+
+  return_arm_home_after_grasp: true
+  return_joint_names:
+    - arm_flex_joint
+    - arm_roll_joint
+    - wrist_flex_joint
+    - wrist_roll_joint
+    - arm_lift_joint
+  return_joint_rad:
+    - -1.5
+    - 0.0
+    - -1.57
+    - 0.0
+    - 0.10
+  return_arm_duration_sec: 5.0
+handover:
+  turn_to_human_before_handover: true
+  require_human_detection: false
+  use_handover_pose: true
+  handover_joint_names:
+  - arm_lift_joint
+  - arm_flex_joint
+  - arm_roll_joint
+  - wrist_flex_joint
+  - wrist_roll_joint
+  handover_joint_rad:
+  - 0.25
+  - -0.35
+  - 0.0
+  - 0.0
+  - 0.0
+  handover_motion_duration_sec: 3.0
+  request_phrase: 受け取ってください
+  countdown_start: 3
+  countdown_interval_sec: 1.0
+  release_phrase: 離します
+  return_arm_after_handover: true
+  return_joint_names:
+  - arm_flex_joint
+  - arm_roll_joint
+  - wrist_flex_joint
+  - wrist_roll_joint
+  - arm_lift_joint
+  return_joint_rad:
+  - 0.0
+  - 0.0
+  - -1.57
+  - 0.0
+  - 0.0
+  return_motion_duration_sec: 3.0
+exit_arena:
+  wait_for_exit_door_open: true
+  exit_location: door_exit
+  door_enter_location: door_enter
+  door_request_phrase: 最後にドアを開けてください
+  exit_phrase: アリーナから出ます

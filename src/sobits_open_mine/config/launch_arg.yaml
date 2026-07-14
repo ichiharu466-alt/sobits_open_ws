@@ -1,0 +1,61 @@
+# 各種launchの設定や起動するlaunchファイル名の設定
+
+launches:
+  tts:
+    enabled: true
+    package: sobits_tts
+    file: kokoro.launch.py
+    arguments:
+      kokoro_lang_code: j
+      kokoro_voice: jf_alpha
+
+  speech_recognition:
+    enabled: true
+    package: sobits_speech_recognition
+    file: whisper.launch.py
+    arguments: {}
+
+  nav2:
+    enabled: false
+    package: sobits_nav
+    file: nav2.launch.py
+    arguments: {}
+
+  yolo:
+    enabled: true
+    package: yolo_ros
+    file: yolo.launch.py
+    arguments:
+      weights_path: /home/su-laptop-19/sobits_open_ws/install/yolo_ros/share/yolo_ros/weights
+      weight_file: yoloe-26s-seg.pt
+      use_bbox_to_3d: "false"
+      use_keypoint_to_3d: "false"
+      use_mask_to_3d: "false"
+      conf: "0.25"
+      device: cpu
+      fuse: "false"
+
+  hsrb_library:
+    enabled: true
+    package: hsrb_library
+    file: library_server.launch.py
+    arguments: {}
+
+bring_me_node:
+  enabled: false
+  enable_nav: true
+  target_object: sponge
+  location_file: locations.yaml
+  task_params_file: task_params.yaml
+
+# 参照画像とbboxをconfig/yoloe_visual_prompt.yamlに設定してからtrueにする。
+# 有効時、bring_me_nodeの物体検出入力はこのノードのoutput_topicへ切り替わる。
+yoloe_visual_prompt_node:
+  enabled: false
+  params_file: yoloe_visual_prompt.yaml
+  output_topic: /yoloe/object_boxes
+
+# IncludeLaunchDescription()で呼び出す、Node()で直接呼び出すものと分ける
+
+# IncludeLaunchDescriptionで呼び出す場合（launchファイルの呼び出し　複数Nodeを扱える）
+# Nodeで呼び出す場合　(実行ファイルの呼び出し　基本的に1つのNodeの呼び出し)

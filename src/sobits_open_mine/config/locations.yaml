@@ -1,0 +1,61 @@
+location_pose:
+  "door_exit": 
+    frame_id: "map"
+    translation: 
+      x: 0.0044651
+      y: -0.9447699
+      z: 0.0000000
+    rotation: 
+      x: 0.0000000
+      y: 0.0000000
+      z: 0.0181925
+      w: 0.9998345
+
+  "door_enter": 
+    frame_id: "map"
+    translation: 
+      x: 0.7678368
+      y: -0.9385912
+      z: 0.0000000
+    rotation: 
+      x: 0.0000000
+      y: 0.0000000
+      z: -0.9999178
+      w: 0.0128186
+
+  "interaction_point": 
+    frame_id: "map"
+    translation: 
+      x: -0.6156118
+      y: -1.1461831
+      z: 0.0000000
+    rotation: 
+      x: 0.0000000
+      y: 0.0000000
+      z: -1.0000000
+      w: 0.0001485
+
+  "living_room_pose": 
+    frame_id: "map"
+    translation: 
+      x: 0.0193784
+      y: -3.7826486
+      z: 0.0000000
+    rotation: 
+      x: 0.0000000
+      y: 0.0000000
+      z: -0.7059699
+      w: 0.7082419
+
+  "kitchen_pose": 
+    frame_id: "map"
+    translation: 
+      x: -1.3112526
+      y: -3.8781760
+      z: 0.0000000
+    rotation: 
+      x: 0.0000000
+      y: 0.0000000
+      z: -0.7368838
+      w: 0.6760195
+

@@ -1,0 +1,18 @@
+robots:
+  hsrb:
+    cmd_vel_topic: /omni_base_controller/cmd_vel
+    detection_topic: /yolo_node/object_boxes
+    human_detection_topic: /yolo_node/object_boxes
+
+    depth_topic: /head_rgbd_sensor/depth_registered/image_raw
+    camera_info_topic: /head_rgbd_sensor/rgb/camera_info
+    image_topic_name: /head_rgbd_sensor/rgb/image_rect_color
+
+    scan_topic: /scan
+    base_frame: base_footprint
+
+    tts_action: /speech_word
+    stt_action: /speech_recognition
+    nav_action: /navigate_to_pose
+
+# 今後各種ロボットの必要topicの設定今後のために
